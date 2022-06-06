@@ -15,6 +15,10 @@ app.post("/", (req, res) => {
   res.redirect("/");
 });
 
+app.get("/:query", (req, res) => {
+  res.send("You have queried for: " + req.params.query);
+});
+
 app.listen(3000, () => {
   console.log("Started listening at port 3000");
 });
