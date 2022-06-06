@@ -3,8 +3,8 @@ const path = require("path");
 
 var router = express.Router();
 
-router.get("/", (req, res) => {
-  let dirPath = path.join(__dirname, "..", "views", "search.html");
+router.get("/:query", (req, res) => {
+  let dirPath = path.join(__dirname, "..", "views", "searchResult.html");
   res.sendFile(dirPath);
 });
 

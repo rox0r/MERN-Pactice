@@ -1,12 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const search = require("./routes/search");
+const searchResult = require("./routes/searchResult");
 
 var app = express();
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/", search);
+app.use("/search", search);
+app.use("/search", searchResult);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
