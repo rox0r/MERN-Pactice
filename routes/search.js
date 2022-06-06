@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 var router = express.Router();
+
+router.use(express.static("public"));
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
