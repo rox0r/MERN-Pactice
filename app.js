@@ -2,17 +2,16 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-// Custom Modules
+// Custom Routers
 const search = require("./routes/search");
 const searchResult = require("./routes/searchResult");
 const home = require("./routes/home");
 
 var app = express();
-
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routers
+// Routes
 app.use("/", home);
 app.use("/search", search);
 app.use("/search", searchResult);
