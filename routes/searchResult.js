@@ -1,9 +1,10 @@
 const express = require("express");
 const path = require("path");
 
-var router = express.Router();
-
+// Custom Modules/Routers
 const err404 = require("./Errors/404");
+
+var router = express.Router();
 
 //Middleware: pre-check/process before sending to actual route
 //Order of these routes is very important.
@@ -14,8 +15,9 @@ router.use("/:query([a-zA-Z]{1,5})", (req, res, next) => {
 });
 
 router.get("/:query([a-zA-Z]{1,5})", (req, res) => {
-  let dirPath = path.join(__dirname, "..", "views", "searchResult.html");
-  res.sendFile(dirPath);
+  let dirPath = path.join(__dirname, "..", "views", "searchResult.ejs");
+  let query = req.params.query;
+  res.render(dirPath, { query: query });
 });
 
 router.use("*", err404);
