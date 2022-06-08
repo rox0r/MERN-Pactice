@@ -11,13 +11,13 @@ const { log } = require("console");
 var router = express.Router();
 dbConnect("blogsDB");
 
-const blog = new Blog({
-  name: "John",
-  heading: "Apple",
-  content: "Pretty solid as a fruit",
-});
+// const blog = new Blog({
+//   name: "John",
+//   heading: "Apple",
+//   content: "Pretty solid as a fruit",
+// });
 
-const author = new Author({ name: "John", age: "28" });
+//const author = new Author({ name: "John", age: "28" });
 
 //author.save();
 //blog.save();
@@ -27,6 +27,7 @@ router.get("/", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      dbDisconnect();
       let dirPath = path.join(__dirname, "..", "views", "blogs.ejs");
       res.render(dirPath, { blogs: blogsArr });
     }

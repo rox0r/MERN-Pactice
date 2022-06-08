@@ -9,7 +9,7 @@ function dbConnect(dbName) {
 }
 
 function dbDisconnect(dbName) {
-  return "hello";
+  return mongoose.connection.close();
 }
 
 module.exports = { dbConnect, dbDisconnect };
