@@ -13,8 +13,9 @@
     <div id="blog-container">
       <% blogs.forEach((blog, i) => { %>
       <div class="blog">
-        <h3 class="bHeading"><%=i+1%>. <%=blog.heading%></h3>
-        <p class="bContent"><%=blog.content%></p>
+        <h3 class="bHeading"><%=i+1%>. <%=blog.heading%> <%=blog.rating%>/5</h3>
+        <p>Author: <%=blog.name%></p>
+        <p class="bContent">Review: <%=blog.content%></p>
         <br />
       </div>
       <% }) %>
