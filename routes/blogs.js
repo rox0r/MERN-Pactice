@@ -5,6 +5,7 @@ const path = require("path");
 // Custom Requires/Imports
 const { dbConnect, dbDisconnect } = require("../config/db");
 const Blog = require("../models/Blog");
+const Author = require("../models/Author");
 
 var router = express.Router();
 dbConnect("blogsDB");
@@ -15,7 +16,10 @@ const blog = new Blog({
   content: "Pretty solid as a fruit",
 });
 
-blog.save();
+const author = new Author({ name: "John", age: "28" });
+
+//author.save();
+//blog.save();
 
 var blogsArr = [
   {
