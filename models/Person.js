@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Fruit = require("./Fruit");
+const { fruitSchema } = require("./Fruit");
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -10,6 +10,7 @@ const personSchema = new mongoose.Schema({
     type: String,
     required: [true, "Name is required."],
   },
+  favFruit: fruitSchema,
 });
 
 const Person = new mongoose.model("Person", personSchema);

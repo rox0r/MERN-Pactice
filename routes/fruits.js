@@ -4,24 +4,40 @@ const path = require("path");
 
 // Custom Requires/Imports
 const { dbConnect, dbDisconnect } = require("../config/db");
-const Fruit = require("../models/Fruit");
+const { Fruit } = require("../models/Fruit");
 const Person = require("../models/Person");
 
 var router = express.Router();
 dbConnect("fruitsDB");
 
 // const fruit = new Fruit({
-//   fruitName: "Banana",
-//   review: "They provide instant energy.",
+//   fruitName: "Pineapple",
+//   review: "It's very juicy.",
 // });
+
+// fruit.save();
 
 // const person = new Person({
-//   name: "Mike",
-//   age: 18,
+//   name: "Kate",
+//   age: 24,
+//   favFruit: fruit,
 // });
 
-// //fruit.save();
-// //person.save();
+// person.save();
+
+/* Fruit.findOne({ fruitName: "Apple" }, (err, data) => {
+  if (err) {
+    console.log(err);
+  } else {
+    Person.updateOne({ name: "Mike" }, { favFruit: data }, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Successfully Updated");
+      }
+    });
+  }
+}); */
 
 router.get("/", (req, res) => {
   Fruit.find({}, (err, fruitsArr) => {
