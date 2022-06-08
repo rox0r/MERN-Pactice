@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const url = "mongodb://localhost:27017/";
+const server = "localhost:27017/";
 
 function dbConnect(dbName) {
-  return mongoose.connect(url + dbName, {
+  return mongoose.connect("mongodb://" + server + dbName, {
     useNewUrlParser: true,
   });
 }
