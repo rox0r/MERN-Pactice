@@ -1,7 +1,21 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const path = require("path");
 
+// Custom Requires/Imports
+const { dbConnect, dbDisconnect } = require("../config/db");
+const Blog = require("../models/Blog");
+
 var router = express.Router();
+dbConnect("blogsDB");
+
+const blog = new Blog({
+  name: "John",
+  heading: "Apple",
+  content: "Pretty solid as a fruit",
+});
+
+blog.save();
 
 var blogsArr = [
   {
