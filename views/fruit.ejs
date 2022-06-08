@@ -5,17 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>Blogs</title>
+    <title>Fruits</title>
   </head>
   <body>
-    <h1>Blogs</h1>
+    <h1>Fruits</h1>
     <hr />
-    <div id="blog-container">
-      <% blogs.forEach((blog, i) => { %>
-      <div class="blog">
-        <h3 class="bHeading"><%=i+1%>. <%=blog.heading%> <%=blog.rating%>/5</h3>
-        <p>Author: <%=blog.name%></p>
-        <p class="bContent">Review: <%=blog.content%></p>
+    <div id="fruits-container">
+      <% fruits.forEach((fruit, i) => { %>
+      <div class="fruit">
+        <h3 class="fruitName"><%=i+1%>. <%=fruit.fruitName%></h3>
+        <p class="fruitReview">Review: <%=fruit.review%></p>
         <br />
       </div>
       <% }) %>

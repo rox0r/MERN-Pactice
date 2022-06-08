@@ -7,7 +7,7 @@ const path = require("path");
 const search = require("./routes/search");
 const searchResult = require("./routes/searchResult");
 const home = require("./routes/home");
-const blogs = require("./routes/blogs");
+const blogs = require("./routes/fruits");
 
 var app = express();
 app.set("view engine", "ejs");
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", home);
 app.use("/search", search);
 app.use("/search", searchResult);
-app.use("/blogs", blogs);
+app.use("/fruits", blogs);
 
 app.listen(3000, () => {
   console.log("Started listening at port 3000");
