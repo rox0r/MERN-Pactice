@@ -8,7 +8,6 @@ const { Fruit } = require("../models/Fruit");
 const Person = require("../models/Person");
 
 var router = express.Router();
-dbConnect("fruitsDB");
 
 // const fruit = new Fruit({
 //   fruitName: "Pineapple",
@@ -40,15 +39,18 @@ dbConnect("fruitsDB");
 }); */
 
 router.get("/", (req, res) => {
-  Fruit.find({}, (err, fruitsArr) => {
-    if (err) {
-      console.log(err);
-    } else {
+  async function findAndRenderFruits() {
+    try {
+      await dbConnect("fruitsDB");
+      let fruitsArr = await Fruit.find();
       dbDisconnect();
       let dirPath = path.join(__dirname, "..", "views", "fruit.ejs");
       res.render(dirPath, { fruits: fruitsArr });
+    } catch (err) {
+      console.log("Error caught : " + err);
     }
-  });
+  }
+  findAndRenderFruits();
 });
 
 module.exports = router;
