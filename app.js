@@ -7,28 +7,12 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const session = require("express-session");
 
-const User = require("./models/user");
+const startPassport = require("./passport-config");
 
 var app = express();
 app.set("view engine", "ejs");
 
-app.use(
-  session({
-    secret: "secretString",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-
-mongoose.connect("mongodb://localhost:27017/fruitsDB", {
-  useNewUrlParser: true,
-});
-
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+startPassport(app);
 
 // Require: Custom Routers
 const search = require("./routes/search");
@@ -38,6 +22,7 @@ const fruits = require("./routes/fruits");
 const createPerson = require("./routes/create-person");
 const login = require("./routes/login");
 const register = require("./routes/register");
+const initializePassport = require("./passport-config");
 
 app.use(express.static("public"));
 
