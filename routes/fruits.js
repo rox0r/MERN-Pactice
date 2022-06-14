@@ -1,6 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const path = require("path");
+const bodyParser = require("body-parser");
 
 // Custom Requires/Imports
 const { dbConnect, dbDisconnect } = require("../config/db");
@@ -38,12 +38,12 @@ var router = express.Router();
   }
 }); */
 
-router.get("/", (req, res) => {
+router.get("/", isAuth, (req, res) => {
   async function findAndRenderFruits() {
     try {
-      await dbConnect("fruitsDB");
+      //await dbConnect("fruitsDB");
       let fruitsArr = await Fruit.find();
-      dbDisconnect();
+      //dbDisconnect();
       let dirPath = path.join(__dirname, "..", "views", "fruit.ejs");
       res.render(dirPath, { fruits: fruitsArr });
     } catch (err) {
@@ -52,5 +52,13 @@ router.get("/", (req, res) => {
   }
   findAndRenderFruits();
 });
+
+function isAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+}
 
 module.exports = router;
