@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <title>Fruits Form</title>
+<%- include("./partials/header.ejs") %>
+
+<title>Fruits Form</title>
   </head>
   <body>
     <h1>Add Person</h1>
@@ -16,5 +11,5 @@
       <input name="review" placeholder="Enter Review" />
       <button type="submit">Submit</button>
     </form>
-  </body>
-</html>
+
+    <%- include("./partials/footer.ejs") %>

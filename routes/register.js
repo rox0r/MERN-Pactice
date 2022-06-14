@@ -8,8 +8,8 @@ const User = require("../models/User");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  const RegisterPath = path.join(__dirname, "..", "views", "register.html");
-  res.sendFile(RegisterPath);
+  const RegisterPath = path.join(__dirname, "..", "views", "register.ejs");
+  res.render(RegisterPath);
 });
 
 router.post("/", (req, res) => {

@@ -8,8 +8,8 @@ router.use(express.static("public"));
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
-  let dirPath = path.join(__dirname, "..", "views", "search.html");
-  res.sendFile(dirPath);
+  let dirPath = path.join(__dirname, "..", "views", "search.ejs");
+  res.render(dirPath);
 });
 
 router.post("/", (req, res) => {

@@ -8,8 +8,8 @@ const User = require("../models/User");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  const loginPath = path.join(__dirname, "..", "views", "login.html");
-  res.sendFile(loginPath);
+  const loginPath = path.join(__dirname, "..", "views", "login.ejs");
+  res.render(loginPath);
 });
 
 router.post("/", (req, res) => {

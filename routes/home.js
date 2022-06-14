@@ -4,8 +4,8 @@ const path = require("path");
 var router = express.Router();
 
 router.get("/", (req, res) => {
-  let dirPath = path.join(__dirname, "..", "views", "home.html");
-  res.sendFile(dirPath);
+  let dirPath = path.join(__dirname, "..", "views", "home.ejs");
+  res.render(dirPath);
 });
 
 // app.post("/", (req, res) => {
