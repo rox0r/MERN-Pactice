@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -11,7 +12,7 @@ const { dbConnect } = require("./db");
 async function startPassport(app) {
   app.use(
     session({
-      secret: "secretString",
+      secret: process.env.SECRET,
       resave: false,
       saveUninitialized: false,
     })
