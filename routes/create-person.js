@@ -28,12 +28,17 @@ router.post("/", (req, res) => {
   });
 
   async function createPerson() {
-    await dbConnect("fruitsDB");
-    await fruitObj.save();
-    await personObj.save();
-    dbDisconnect();
-    res.redirect("/fruits");
+    try {
+      await dbConnect("fruitsDB");
+      await fruitObj.save();
+      await personObj.save();
+      dbDisconnect();
+      res.redirect("/fruits");
+    } catch (err) {
+      console.log(err);
+    }
   }
+
   createPerson();
 });
 
