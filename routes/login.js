@@ -1,5 +1,9 @@
 const express = require("express");
 const path = require("path");
+const passport = require("passport");
+
+//Custom requires
+const User = require("../models/User");
 
 const router = express.Router();
 
@@ -9,7 +13,19 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  //check and authenticate, then redirect to fruits page
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+  });
+  req.login(user, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local")(req, res, () => {
+        res.redirect("/fruits");
+      });
+    }
+  });
 });
 
 module.exports = router;

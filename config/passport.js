@@ -1,12 +1,12 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const session = require("express-session");
 
-const User = require("./models/user");
+const User = require("../models/User");
+const { dbConnect } = require("./db");
 
 async function startPassport(app) {
   app.use(
@@ -19,9 +19,7 @@ async function startPassport(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  mongoose.connect("mongodb://localhost:27017/fruitsDB", {
-    useNewUrlParser: true,
-  });
+  await dbConnect("fruitsDB");
 
   passport.use(User.createStrategy());
   passport.serializeUser(User.serializeUser());

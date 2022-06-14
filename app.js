@@ -1,18 +1,17 @@
 const express = require("express");
 const ejs = require("ejs");
-const path = require("path");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
-const session = require("express-session");
 
-const startPassport = require("./passport-config");
+const startPassport = require("./config/passport");
 
 var app = express();
 app.set("view engine", "ejs");
 
-startPassport(app);
+//Things given as app.use/set auto apply to all routes and need not be "required" in each.
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+startPassport(app); // Initialise Passport before requiring custom routes
 
 // Require: Custom Routers
 const search = require("./routes/search");
@@ -22,9 +21,6 @@ const fruits = require("./routes/fruits");
 const createPerson = require("./routes/create-person");
 const login = require("./routes/login");
 const register = require("./routes/register");
-const initializePassport = require("./passport-config");
-
-app.use(express.static("public"));
 
 // Use: Custom Routes
 app.use("/", home);
